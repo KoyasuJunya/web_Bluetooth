@@ -1,4 +1,4 @@
-﻿<!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -86,6 +86,8 @@ function getTemperature() {
   //////////////////////////////////////////////////
   function onTemperatureChanged (event) {
     let temperature = event.target.value.getUint8(0, true);
+    // i = 0;
+    // let log[i++] = temperature;
     console.log('温度 : ' + temperature);
     document.getElementById("temperature").innerText = temperature + '℃';
   }
@@ -105,9 +107,23 @@ function disconnect() {
  
 }
  
+var now = new Date();
+    function LoadProc() {
+      var target = document.getElementById("DateTimeDisp");
+
+      var Year = now.getFullYear();
+      var Month = now.getMonth()+1;
+      var Date = now.getDate();
+      var Hour = now.getHours();
+      var Min = now.getMinutes();
+      var Sec = now.getSeconds();
+
+      target.innerHTML = Year + "年" + Month + "月" + Date + "日" + Hour + ":" + Min + ":" + Sec;
+    }
+
 </script>
 </head>
-<body bgcolor="#D7AC86" text="#822433">
+<body bgcolor="#D7AC86" onload="LoadProc();">
 <div id="BLE_temperature">
   <div id="BLE_title">
     <h1>ゼミナールB EP18045 子安潤弥</h1>
@@ -121,6 +137,8 @@ function disconnect() {
   <div id="BLE_display">
     <p>温度：<span id="temperature">micro:bitと接続して、温度を取得してください。</span></p>
   <div>
+    <p>最終更新日時：<span id="DateTimeDisp"></span></p>
+  </div>
 </div>
 </body>
 </html>
